@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Rand0m.io</title>
   <style>
+    /* Default (light mode) */
     body {
       display: flex;
       flex-direction: column;
@@ -13,16 +14,32 @@
       margin: 0;
       font-family: 'Courier New', Courier, monospace;
       background-color: #f5f5f5;
+      color: #333;
     }
+
     img {
       width: 200px;
-      height: auto;
-      border-radius: 10px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%; /* Makes it a perfect circle */
+      border: 3px solid #ccc;
     }
+
     h1 {
       margin-top: 20px;
       font-size: 2em;
-      color: #333;
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #121212;
+        color: #f0f0f0;
+      }
+
+      img {
+        border-color: #444;
+      }
     }
   </style>
 </head>

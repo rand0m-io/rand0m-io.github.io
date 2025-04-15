@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Rand0m.io</title>
-  <!-- Bootstrap 4 CSS CDN -->
+  <!-- Bootstrap 4 CDN -->
   <link
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -30,6 +30,12 @@
       object-fit: cover;
       border-radius: 50%;
       border: 3px solid #ccc;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    img:hover {
+      transform: scale(1.05);
     }
 
     h1 {
@@ -59,6 +65,22 @@
       height: 32px;
     }
 
+    .lol-message {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 8px 16px;
+      border-radius: 5px;
+      font-size: 1.2em;
+      opacity: 0;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
+    }
+
+    .lol-message.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     @media (prefers-color-scheme: dark) {
       body {
         background-color: #121212;
@@ -68,24 +90,68 @@
       img {
         border-color: #444;
       }
+
+      .lol-message {
+        background: rgba(30, 30, 30, 0.85);
+        color: #f0f0f0;
+      }
     }
   </style>
 </head>
 <body>
-  <img src="https://raw.githubusercontent.com/rand0m-io/rand0m-website/main/rand0m.jpg" alt="Rand0m.io Picture">
+  <img
+    src="https://raw.githubusercontent.com/rand0m-io/rand0m-website/main/rand0m.jpg"
+    alt="Rand0m.io Picture"
+    id="profilePic"
+  >
+
   <h1>
     <a href="https://www.instagram.com/rand0m.io/" target="_blank" rel="noopener noreferrer">Rand0m.io</a>
   </h1>
 
-  <!-- GitHub Button (bottom-left) -->
+  <div id="lolMessage" class="lol-message">
+    lol
+  </div>
+
+  <!-- GitHub Button -->
   <a
     href="https://github.com/rand0m-io/rand0m-io.github.io"
     target="_blank"
     rel="noopener noreferrer"
     class="github-button"
-    aria-label="View on GitHub"
   >
     <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Logo">
   </a>
+
+  <script>
+    const profilePic = document.getElementById('profilePic');
+    const lolMessage = document.getElementById('lolMessage');
+
+    profilePic.addEventListener('click', () => {
+      // Show the message
+      lolMessage.classList.add('show');
+
+      // Get random position on the screen
+      const maxX = window.innerWidth - lolMessage.offsetWidth;
+      const maxY = window.innerHeight - lolMessage.offsetHeight;
+
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+
+      // Set the random position
+      lolMessage.style.left = `${randomX}px`;
+      lolMessage.style.top = `${randomY}px`;
+
+      // Clear any existing timeout
+      if (lolMessage.timeoutId) {
+        clearTimeout(lolMessage.timeoutId);
+      }
+
+      // Hide it after 5 seconds
+      lolMessage.timeoutId = setTimeout(() => {
+        lolMessage.classList.remove('show');
+      }, 5000);
+    });
+  </script>
 </body>
 </html>

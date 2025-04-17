@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Rand0m.io</title>
+  
+  <!-- Favicon Link -->
+  <link rel="icon" href="https://raw.githubusercontent.com/rand0m-io/rand0m-website/main/rand0m.jpg" type="image/jpeg">
+
   <!-- Bootstrap 4 CDN -->
   <link
     rel="stylesheet"
@@ -22,6 +26,19 @@
       background-color: #f5f5f5;
       color: #333;
       position: relative;
+      padding: 0 2rem; /* Add padding here for left-right spacing */
+    }
+
+    .container {
+      width: 100%;
+    }
+
+    .description {
+      max-width: 700px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
 
     img {
@@ -99,42 +116,46 @@
   </style>
 </head>
 <body>
-  <img
-    src="https://raw.githubusercontent.com/rand0m-io/rand0m-website/main/rand0m.jpg"
-    alt="Rand0m.io Picture"
-    id="profilePic"
-  >
+  <div class="container">
+    <img
+      src="https://raw.githubusercontent.com/rand0m-io/rand0m-website/main/rand0m.jpg"
+      alt="Rand0m.io Picture"
+      id="profilePic"
+      class="mx-auto d-block"
+    >
 
-  <h1>
-    <a href="https://www.instagram.com/rand0m.io/" target="_blank" rel="noopener noreferrer">Rand0m.io</a>
-  </h1>
-  <div class="description text-center mt-3 px-7">
-  Hi I'm random. I enjoy cool things like sky diving, scuba diving, snow boarding, playing guitar and astrophotography;
-  and also nerd things like building electronics and firmware for autonomous robots, IC design and semiconductor
-  material research. Text me on 
-  <a href="https://www.instagram.com/rand0m.io/" target="_blank" rel="noopener noreferrer">Instagram</a>!
+    <h1 class="text-center">
+      <a href="https://www.instagram.com/rand0m.io/" target="_blank" rel="noopener noreferrer">Rand0m.io</a>
+    </h1>
+
+    <!-- Add description here -->
+    <div class="description text-center mt-3">
+      Hi I'm random. I enjoy cool things like sky diving, scuba diving, snow boarding, playing guitar and astrophotography;
+      and also nerd things like building electronics and firmware for autonomous robots, IC design and semiconductor
+      material research. Text me on 
+      <a href="https://www.instagram.com/rand0m.io/" target="_blank" rel="noopener noreferrer">Instagram</a>!
+    </div>
+
+    <div id="lolMessage" class="lol-message">
+      lol
+    </div>
+
+    <!-- GitHub Button -->
+    <a
+      href="https://github.com/rand0m-io/rand0m-io.github.io"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="github-button"
+    >
+      <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Logo">
+    </a>
   </div>
-
-  <div id="lolMessage" class="lol-message">
-    lol
-  </div>
-
-  <!-- GitHub Button -->
-  <a
-    href="https://github.com/rand0m-io/rand0m-io.github.io"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="github-button"
-  >
-    <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Logo">
-  </a>
 
   <script>
     const profilePic = document.getElementById('profilePic');
     const lolMessage = document.getElementById('lolMessage');
 
     profilePic.addEventListener('click', () => {
-      // Show the message
       lolMessage.classList.add('show');
 
       // Get random position on the screen
@@ -144,16 +165,13 @@
       const randomX = Math.random() * maxX;
       const randomY = Math.random() * maxY;
 
-      // Set the random position
       lolMessage.style.left = `${randomX}px`;
       lolMessage.style.top = `${randomY}px`;
 
-      // Clear any existing timeout
       if (lolMessage.timeoutId) {
         clearTimeout(lolMessage.timeoutId);
       }
 
-      // Hide it after 5 seconds
       lolMessage.timeoutId = setTimeout(() => {
         lolMessage.classList.remove('show');
       }, 5000);
